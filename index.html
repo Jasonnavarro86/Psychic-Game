@@ -7,15 +7,44 @@
     <title>Document</title>
 
     <script>   
-
+    //The alphabet array  
     var appLetter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+    // the formula for random generation
     
+
+
+var run1 = function(){
     var rand = appLetter[Math.floor(Math.random()*((appLetter.length-1)+1))];
-   
+    var start1 = prompt("guess a letter");
+    var lose1 = "sorry try again. The letter was" + " " +rand + ".";
+    var loop1 = start1 + "try agin";
+        if(start1 == rand){
+            prompt("congrats you win!")
+            
+        }
+        
+
+
+    }
+
+    var run2 = function(){
+        if(start1 !== rand)
+        run1();
+    }
+    run1();
+    
+
+        // if (lose1){
+        //     var retry = start1;
+        // }
+        
+
+        
 
     </script>
 </head>
 <body>
-    
+    <p class="test1">_ _ _ _ _</p>
 </body>
 </html>
