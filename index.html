@@ -12,39 +12,64 @@
         var appLetter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
         // declaring vars for later use;
-        var answer, wins, losses, guessesLeft, soFar;
+        var guessesLeft = 10;
+        var soFar;
+        var wins = 0;
+        var losses = 0;
+        var guessLog = [];
 
-        wins = 0;
-        losses = 0;
-        // my rest function for starting the game over
-function reset() {
-
-            guessesLeft = "10";
-
-            document.getElementById("guessesLeft").innerHTML = guessesLeft;
-            document.getElementById("wins").innerHTML = wins;
-            document.getElementById("losses").innerHTML = losses;
-           
-        };
         
-function answer(){
-answer = appLetter[Math.floor(Math.random()*((appLetter.length-1)+1))];
-
-};
 
 
-function userGuesses(){
+        // my rest function for starting the game over
+        function reset() {
+            // guessesLeft = 10;
+            // document.getElementById("guessesLeft").innerHTML = guessesLeft;
+            document.getElementById("wins").innerHTML = "0";
+            document.getElementById("losses").innerHTML = "0";
 
-    if( key == answer){
-        wins++;
-        // document.getElementById("msg").innerHTML = "Nice Job! <br> Let's Play Again!";
-    }else{
-        // document.getElementById("msg").innerHTML = "Nope! <br> Guess Again!";
-    
-    guessesLeft--;
-    // result();
-    }
-};
+            document.getElementById("guessesLeft").innerHTML = "10";
+        };
+
+
+        function randLet() {
+            var answers = appLetter[Math.floor(Math.random() * ((appLetter.length - 1) + 1))];
+            
+        }
+
+
+        function userGuesses() {
+            var guess = " " + document.getElementById("soFar").value;
+                guessLog.push(guess);
+                console.log(guessLog);
+                document.getElementById("guessLog").innerHTML = guessLog + ",";
+
+                guessesLeft--;
+                document.getElementById("guessesLeft").innerHTML = guessesLeft;
+
+            if (guess == randLet) {
+                // document.getElementById(wins).innerHTML = addWin;
+                document.getElementById("soFar").value = "";
+            }
+            else {
+                document.getElementById("soFar").value = "";
+
+                // document.getElementById(guesses).innerHTML = guessesLeft --;
+
+            }
+
+
+        };
+//     if( key == answer){
+//         wins++;
+//         // document.getElementById("msg").innerHTML = "Nice Job! <br> Let's Play Again!";
+//     }else{
+//         // document.getElementById("msg").innerHTML = "Nope! <br> Guess Again!";
+
+//     guessesLeft--;
+//     // result();
+//     }
+// };
 
 
 
@@ -86,7 +111,7 @@ function userGuesses(){
 //     }
 // }
     </script>
-   
+
 </head>
 
 <body onload="reset();">
@@ -99,7 +124,8 @@ function userGuesses(){
     <div>Wins:<span id="wins"></span></div>
     <div>Loses:<span id="losses"></span></div>
     <div>Guesses Left:<span id="guessesLeft"></span></div>
-    <div>Your guesses so far:<input type="text" id="soFar" onchange="userGuesses()"/> </div>
+    <div>Your guesses so far:<p id="guessLog"></p></div>
+        <input type="text" id="soFar" onchange="userGuesses()" />
 
 </body>
 
