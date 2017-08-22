@@ -7,85 +7,83 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <script>
-        // the array storing the leters for the game. 
-        var appLetter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-        // declaring vars for later use;
-        var guessesLeft = 10;
-        var soFar;
-        var wins = 0;
-        var losses = 0;
-        var guessLog = [];
-        var answers;
-        var answers = appLetter[Math.floor(Math.random() * ((appLetter.length - 1) + 1))];
-        console.log(answers);
-
-
-        // my rest function 
-        function reset() {
-            document.getElementById("wins").innerHTML = wins;
-            document.getElementById("losses").innerHTML = "0";
-            document.getElementById("guessesLeft").innerHTML = "10";
-        };
-
-        function newGame(){
-            window.location.reset();
-
-        };
-
-// // TODO: function for my random letter
-//         function randLet() {
-//             answers = appLetter[Math.floor(Math.random() * ((appLetter.length - 1) + 1))];
-           
-//             console.log(answers);
-//         }
-
-
-        function userGuesses() {
-
-            var guess = document.getElementById("soFar").value;
-                guessLog.push(guess);
-                console.log(guessLog);
-                document.getElementById("guessLog").innerHTML = guessLog + " , ";
-
-                guessesLeft--;
-                document.getElementById("guessesLeft").innerHTML = guessesLeft;
-
-            if (guess == answers) {
-                console.log("This is the guess" , guess);
-                console.log("This is the answers" , answers);
-                document.getElementById("soFar").value = "";
-                wins++;
-                document.getElementById("wins").innerHTML = wins; 
-                newGame();
-            }
-            else if(guess > 10){
-              
-            losses++;
-                document.getElementById("losses").innerHTML = losses;
-            }
-
-
-            else {
-                document.getElementById("soFar").value = "";
-
-                
-                
-               
-
-            }
-
-           
-          
-
-
-        };
-
-    </script>
+   
 
 </head>
 
-<body onload="reset()">
+<body>
+        <script>
+                // the array storing the leters for the game. 
+                var appLetter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+                    't', 'u', 'v', 'w', 'x', 'y', 'z'
+                ];
+                // declaring vars for later use;
+                var guessesLeft = 10;
+                var soFar;
+                var wins = 0;
+                var losses = 0;
+                var guessLog = [];
+                // var answers;
+                var answers = appLetter[Math.floor(Math.random() * ((appLetter.length - 1) + 1))];
+                console.log(answers);
+                var newAnswer;
+        
+                function reset() {
+        
+                         var reSet = appLetter[Math.floor(Math.random() * ((appLetter.length - 1) + 1))];
+                            return reSet;
+                     }
+        
+                function userGuesses() {
+        
+                    var guess = document.getElementById("soFar").value;
+                    guessLog.push(guess);
+                    document.getElementById("guessLog").innerHTML = guessLog + " , ";
+                    document.getElementById("soFar").value = "";
+                    guessesLeft--;
+                    document.getElementById("guessesLeft").innerHTML = guessesLeft;
+        
+                    if (guess == answers) {
+                        console.log("This is the guess", guess);
+                        console.log("This is the answers", answers);
+                        
+                        document.getElementById("soFar").value = "";
+                        document.getElementById("guessLog").value = "";
+                        wins++;
+                        document.getElementById("wins").innerHTML = wins;
+                        document.getElementById("guessLog").innerHTML = "";
+                        guessesLeft = 10;
+                        document.getElementById("guessesLeft").innerHTML = "10";
+                        guessLog = [];
+                    }    
+        
+                    if(guessesLeft == 0)  {
+                    losses++;
+                     document.getElementById("losses").innerHTML = losses;
+                     document.getElementById("guessLog").innerHTML = "";
+                     guessesLeft = 10;
+                     document.getElementById("guessesLeft").innerHTML = "10";
+                     guessLog = [];
+                     
+                    // // my rest function 
+                     
+                    }     
+        
+                };
+        
+        
+</script>
+
+
+
+
+
+
+
+
+
+
+
     <h1>Psychic Game</h1>
 
     <div></div>
@@ -95,9 +93,16 @@
     <div>Wins:<span id="wins"></span></div>
     <div>Loses:<span id="losses"></span></div>
     <div>Guesses Left:<span id="guessesLeft"></span></div>
-    <div id="color"><h3>Your Guesses So Far:</h3><p id="guessLog"> </p></div>
-        <input type="text" id="soFar" onchange="userGuesses()" />
-        <!-- <input type="text" id="soFar" onchange="userGuesses()" /> -->
+    <div id="color">
+        <h3>Your Guesses So Far:</h3>
+        <p id="guessLog"> </p>
+    </div>
+    <label for="soFar">Enter Guess Here</label>
+    <input type="text" id="soFar" onchange="userGuesses()" />
+    <div>
+
+    </div>
+    
 </body>
 
 </html>
