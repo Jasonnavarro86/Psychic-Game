@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <script type="text/javascript" src="assets/javascript/game.js">   
-
+    <script>
         // the array storing the leters for the game. 
-    var appLetter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        var appLetter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-    // the formula for generation a random letter.
+        // declaring vars for later use;
+        var answer, wins, losses, guessesLeft, soFar;
 
-    var answer; 
-    var guess = prompt("What's your guess?");
-    var lose1 = "sorry Game Over. The letter was" + " " + answer + ".";
-    var wins, losses, guessesLeft, yourGuesses;
+        wins = 0;
+        losses = 0;
+        // my rest function for starting the game over
+function reset() {
 
+            guessesLeft = "10";
 
-function reset(){
-wins = 0;
-guessesLeft = 10;
-
-document.getElementById("wins").innerHTML = wins;
-document.getElementById("guessesLeft").innerHTML = guessesLeft;
-document.getElementById("msg").innerHTML = "start";
-document.getElementById("yourGuesses").innerHTML = 0;
-};
-
+            document.getElementById("guessesLeft").innerHTML = guessesLeft;
+            document.getElementById("wins").innerHTML = wins;
+            document.getElementById("losses").innerHTML = losses;
+           
+        };
+        
 function answer(){
 answer = appLetter[Math.floor(Math.random()*((appLetter.length-1)+1))];
+
 };
 
-function user(n){
-    document.getElementById(userGuesses).innerHTML=n;
-    if(n == answer){
+
+function userGuesses(){
+
+    if( key == answer){
         wins++;
-        document.getElementById("msg").innerHTML = "Nice Job! <br> Let's Play Again!";
+        // document.getElementById("msg").innerHTML = "Nice Job! <br> Let's Play Again!";
     }else{
-        document.getElementById("msg").innerHTML = "Nope! <br> Guess Again!";
-    }
+        // document.getElementById("msg").innerHTML = "Nope! <br> Guess Again!";
+    
     guessesLeft--;
-    result();
-
+    // result();
+    }
 };
 
-function result(){
-// document.getElementById("soFar").innerHTML = ;
-document.getElementById("wins").innerHTML = wins;
-};
+
+
+
+// function user(n){
+//     document.getElementById(userGuesses).innerHTML=n;
+//     if(n == answer){
+//         wins++;
+//         document.getElementById("msg").innerHTML = "Nice Job! <br> Let's Play Again!";
+//     }else{
+//         document.getElementById("msg").innerHTML = "Nope! <br> Guess Again!";
+//     }
+//     guessesLeft--;
+//     result();
+
+// };
+
+// function result(){
+// // document.getElementById("soFar").innerHTML = ;
+// document.getElementById("wins").innerHTML = wins;
+// if(guessesLeft == 0){
+//     document.getElementById(message).innerHTML = "Your Score Is" + wins;
+// } else{
+//     answer;
+// }
+// };
 
 
 
 
 // for(i=0; i<10; i++){
 
-    
+
 //     if(answer == guess){
 //     prompt("You Got It!");
 //     break;
@@ -64,18 +85,22 @@ document.getElementById("wins").innerHTML = wins;
 //         prompt("Sorry Pls Try Again.")
 //     }
 // }
- 
-
     </script>
+   
 </head>
-<body>
+
+<body onload="reset();">
     <h1>Psychic Game</h1>
-    
+
+    <div></div>
+    <div>
+        <h2>Can You Guess What Letter I Am Thinking Of?</h2>
+    </div>
     <div>Wins:<span id="wins"></span></div>
     <div>Loses:<span id="losses"></span></div>
-    <div>Guesses Left:><span id="guessesLeft"></span></div>
-    <div>Your guesses so far:<span class="soFar"></span></div>
-    <div>Can You Guess What Letter I Am Thinking Of?<span id="userGuess"></span></div>
-    <div><span id="message"></span></div>
+    <div>Guesses Left:<span id="guessesLeft"></span></div>
+    <div>Your guesses so far:<input type="text" id="soFar" onchange="userGuesses()"/> </div>
+
 </body>
+
 </html>
