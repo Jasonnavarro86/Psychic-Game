@@ -7,44 +7,30 @@
     <title>Document</title>
 
     <script>   
-    //The alphabet array  
+
+        // the array storing the leters for the game. 
     var appLetter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-    // the formula for random generation
+    // the formula for generation a random letter.
+
+    var Answer = appLetter[Math.floor(Math.random()*((appLetter.length-1)+1))];
+    var guess;
+    var lose1 = "sorry try again. The letter was" + " " +guess + ".";
     
+for(i=0; i<10; i++){
 
-
-var run1 = function(){
-    var rand = appLetter[Math.floor(Math.random()*((appLetter.length-1)+1))];
-    var start1 = prompt("guess a letter");
-    var lose1 = "sorry try again. The letter was" + " " +rand + ".";
-    var loop1 = start1 + "try agin";
-        if(start1 == rand){
-            prompt("congrats you win!")
-            
-        }
-        
-
-
-    }
-
-    var run2 = function(){
-        if(start1 !== rand)
-        run1();
-    }
-    run1();
-    
-
-        // if (lose1){
-        //     var retry = start1;
-        // }
-        
-
-        
+    guess = prompt("What's your guess?")
+}
+ 
 
     </script>
 </head>
 <body>
-    <p class="test1">_ _ _ _ _</p>
+    <h1>Psychic Game</h1>
+    <p class="test1">Guess what letter I am thinking of</p>
+    <p class="test1">Wins</p>
+    <p class="test1">Losses</p>
+    <p class="test1">Guesses left</p>
+    <p class="test1">Your guesses so far</p>
 </body>
 </html>
